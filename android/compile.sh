@@ -45,36 +45,36 @@ cd $BASEDIR
 case "$1" in
 
 	armeabi-v7a)
-		APILEVEL=29
+		APILEVEL=14
 	;;
 
 	arm64-v8a)
-		APILEVEL=29
+		APILEVEL=21
 	;;
 
 	x86)
-		APILEVEL=29
+		APILEVEL=14
 	;;
 
 	x86_64)
-		APILEVEL=29
+		APILEVEL=21
 	;;
 
 	all)
-		echo "Packing server.zip ..."
 		rm -rf Server
 		mkdir -p Server
-		cd $BASEDIR/../Server
-		zip -r $BASEDIR/Server/server.zip *
 
 		for arch in armeabi-v7a arm64-v8a x86 x86_64; do
 			echo "Doing ... $arch ..." && \
 			cd $BASEDIR && \
-			"$SELF" clean && \
 			"$SELF" "$arch" && \
 			cd $BUILDDIR/Server && \
 			zip $BASEDIR/Server/"$arch".zip Cuberite
 		done
+
+		echo "Packing server.zip ..."
+		cd $BUILDDIR/Server
+		zip -r $BASEDIR/Server/server.zip -@ -x Cuberite < Install/UnixExecutables.list
 
 		cd $BASEDIR/Server
 		for file in server.zip armeabi-v7a.zip arm64-v8a.zip x86.zip x86_64.zip; do
