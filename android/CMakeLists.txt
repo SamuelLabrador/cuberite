@@ -4,7 +4,6 @@ project(Cuberite)
 # Set up Android parameters
 add_definitions(-DANDROID)
 set(ANDROID TRUE)
-set(CMAKE_BUILD_TYPE "Debug")
 set(CMAKE_POSITION_INDEPENDENT_CODE TRUE)
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fPIE -pie")
 
