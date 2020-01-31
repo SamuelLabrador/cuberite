@@ -1,3 +1,4 @@
 ./CIbuild.sh
-cd tests/
-make
+cd tests
+cmake
+ctest
